@@ -368,13 +368,14 @@
       <div class="contact-form">
         <h3>Envianos tu consulta</h3>
         <form id="mayForm" onsubmit="submitForm(event)">
-          <div class="form-group"><label>Nombre completo</label><input type="text" placeholder="Tu nombre" required/></div>
-          <div class="form-group"><label>Email</label><input type="email" placeholder="email@ejemplo.com" required/></div>
-          <div class="form-group"><label>Teléfono / WhatsApp</label><input type="tel" placeholder="+54 9 XXXX XXXXXX"/></div>
-          <div class="form-group"><label>Tipo de negocio</label><select><option value="">Seleccioná...</option><option>Almacén / Kiosco</option><option>Casa de regalos</option><option>Distribuidora</option><option>Tienda online</option><option>Otro</option></select></div>
-          <div class="form-group"><label>Mensaje</label><textarea placeholder="Contanos sobre tu negocio y qué productos te interesan..."></textarea></div>
-          <button type="submit" class="btn-form">Enviar Consulta</button>
+          <div class="form-group"><label>Nombre completo</label><input type="text" name="nombre" placeholder="Tu nombre" required/></div>
+          <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="email@ejemplo.com" required/></div>
+          <div class="form-group"><label>Teléfono / WhatsApp</label><input type="tel" name="telefono" placeholder="+54 9 XXXX XXXXXX"/></div>
+          <div class="form-group"><label>Tipo de negocio</label><select name="tipo_negocio"><option value="">Seleccioná...</option><option>Almacén / Kiosco</option><option>Casa de regalos</option><option>Distribuidora</option><option>Tienda online</option><option>Otro</option></select></div>
+          <div class="form-group"><label>Mensaje</label><textarea name="mensaje" placeholder="Contanos sobre tu negocio y qué productos te interesan..."></textarea></div>
+          <button type="submit" class="btn-form" id="btnForm">Enviar Consulta</button>
           <div class="form-ok" id="formOk">✅ ¡Mensaje enviado! Te contactamos a la brevedad.</div>
+          <div id="formError" style="display:none;background:#fde8e8;border:1px solid #e74c3c;color:#c0392b;padding:12px;border-radius:7px;margin-top:10px;font-size:.88rem">❌ Hubo un error al enviar. Por favor escribinos por WhatsApp.</div>
         </form>
       </div>
     </div>
@@ -779,7 +780,23 @@ function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('op
 function closeMenu(){document.getElementById('mobileMenu').classList.remove('open');}
 let toastTimer;
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),2800);}
-function submitForm(e){e.preventDefault();document.getElementById('mayForm').reset();document.getElementById('formOk').style.display='block';}
+async function submitForm(e){
+  e.preventDefault();
+  const btn=document.getElementById('btnForm');
+  const ok=document.getElementById('formOk');
+  const err=document.getElementById('formError');
+  ok.style.display='none'; err.style.display='none';
+  btn.textContent='Enviando...'; btn.disabled=true;
+  const data=new FormData(document.getElementById('mayForm'));
+  try{
+    const res=await fetch('https://formspree.io/f/mjglwgql',{method:'POST',body:data,headers:{Accept:'application/json'}});
+    if(res.ok){
+      ok.style.display='block';
+      document.getElementById('mayForm').reset();
+    } else { err.style.display='block'; }
+  }catch(ex){ err.style.display='block'; }
+  btn.textContent='Enviar Consulta'; btn.disabled=false;
+}
 
 // ===== ADMIN ACCESS =====
 document.getElementById('logoEl').addEventListener('click',function(e){
