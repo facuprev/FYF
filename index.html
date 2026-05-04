@@ -318,6 +318,7 @@
       <button class="cat-pill" onclick="filterCat('bombilla',this)">Bombillas</button>
       <button class="cat-pill" onclick="filterCat('yerba',this)">Yerbas</button>
       <button class="cat-pill" onclick="filterCat('accesorio',this)">Accesorios</button>
+      <button class="cat-pill" onclick="filterCat('termo',this)">Termos</button>
     </div>
     <div class="products-grid" id="productsGrid"></div>
   </div>
@@ -569,6 +570,7 @@
           <option value="bombilla">Bombillas</option>
           <option value="yerba">Yerbas</option>
           <option value="accesorio">Accesorios</option>
+          <option value="termo">Termos</option>
         </select>
       </div>
       <div class="modal-field full">
@@ -678,7 +680,11 @@ const PRODUCTOS_DEFAULT=[
   {id:61,nombre:"Mate Camionero Cuero Crudo Virola Volcada Alpaca",cat:"mate",catLabel:"Mates",precio:61500,stock:true,atrib:"",desc:"Cuero crudo con virola volcada de alpaca cincelada.",img:CDN+"32f4e4d783eac2c1d9cf58f29b490dd74aebf82f9f4e34f45b4b958833ff7067432995.png"},
   {id:62,nombre:"Mate Camionero Cuero Repujado Virola Alpaca",cat:"mate",catLabel:"Mates",precio:34000,stock:false,atrib:"",desc:"Camionero forrado en cuero repujado. Virola de alpaca.",img:CDN+"f652915d4f0d7002283aff029a28779dfccc0e561ff64c1352d47cf16c2d05f4432995.png"},
   {id:63,nombre:"Mate Camionero Cuero Común Virola Acero Lisa",cat:"mate",catLabel:"Mates",precio:27000,stock:true,atrib:"",desc:"Camionero forrado en cuero común. Virola de acero lisa.",img:CDN+"7a7a96276c19d426fa5378bfa9ac757b5f4c5016858e64a48a1900f15b36207d432995.png"},
-  {id:64,nombre:"Imperial Calabaza Virola Alpaca",cat:"mate",catLabel:"Mates",precio:33000,stock:true,atrib:"",desc:"Imperial cuero liso con virola alpaca.",img:CDN+"12083cd089d32f636aa1ab8a2a5bb84e0b246a26c427f5e0bd2037ac2005712a432995.png"}
+  {id:64,nombre:"Imperial Calabaza Virola Alpaca",cat:"mate",catLabel:"Mates",precio:33000,stock:true,atrib:"",desc:"Imperial cuero liso con virola alpaca.",img:CDN+"12083cd089d32f636aa1ab8a2a5bb84e0b246a26c427f5e0bd2037ac2005712a432995.png"},
+  {id:100,nombre:"Termo Stanley Clásico 1L",cat:"termo",catLabel:"Termos",precio:45000,stock:true,atrib:"1 litro",desc:"El termo más popular. Acero inoxidable, mantiene la temperatura 24 hs.",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Stanley_thermos.jpg/400px-Stanley_thermos.jpg"},
+  {id:101,nombre:"Termo Lumilagro 1L",cat:"termo",catLabel:"Termos",precio:28000,stock:true,atrib:"1 litro",desc:"Termo nacional de acero inoxidable. Ideal para el mate.",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Stanley_thermos.jpg/400px-Stanley_thermos.jpg"},
+  {id:102,nombre:"Termo Lumilagro 500ml",cat:"termo",catLabel:"Termos",precio:18000,stock:true,atrib:"500 ml",desc:"Termo compacto. Perfecto para llevar a todos lados.",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Stanley_thermos.jpg/400px-Stanley_thermos.jpg"},
+  {id:103,nombre:"Termo Invicto 1L",cat:"termo",catLabel:"Termos",precio:22000,stock:false,atrib:"1 litro",desc:"Termo Invicto acero inoxidable. Tapa cebadora incluida.",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Stanley_thermos.jpg/400px-Stanley_thermos.jpg"}
 ];
 
 const ENVIOS_DEFAULT=['📮 Correo Argentino','🤝 A acordar'];
@@ -906,7 +912,7 @@ function saveProduct(){
   const desc=document.getElementById('modalDesc').value.trim();
   const stock=document.getElementById('modalStock').value==='true';
   const img=document.getElementById('modalImg').value.trim();
-  const catLabels={mate:'Mates',bombilla:'Bombillas',yerba:'Yerbas',accesorio:'Accesorios'};
+  const catLabels={mate:'Mates',bombilla:'Bombillas',yerba:'Yerbas',accesorio:'Accesorios',termo:'Termos'};
   if(!nombre){alert('El nombre es obligatorio');return;}
   if(editingId!==null){
     const p=PRODUCTOS.find(x=>x.id===editingId);
