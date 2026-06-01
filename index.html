@@ -238,6 +238,56 @@
     .btn-add-item{background:#2A4A1A;color:#fff;padding:9px 18px;border-radius:7px;font-family:'Bebas Neue',sans-serif;font-size:.88rem;letter-spacing:.08em;transition:background .2s;white-space:nowrap}.btn-add-item:hover{background:#3D6B27}
     .admin-saved-badge{background:#e6f7e9;border:1px solid #2ecc71;color:#1a5c2a;padding:8px 16px;border-radius:6px;font-size:.85rem;text-align:center;margin-top:12px;display:none}
     .sync-badge{display:inline-flex;align-items:center;gap:6px;background:#e8f4fd;border:1px solid #3498db;color:#1a5c8a;padding:6px 14px;border-radius:6px;font-size:.8rem;margin-left:auto}
+    /* === BANNER ANUNCIO === */
+    .anuncio-bar{display:none;background:linear-gradient(90deg,#1A120A,#2A4A1A,#1A120A);color:#F5EDE0;padding:10px 20px;text-align:center;font-size:.9rem;position:relative;z-index:101}
+    .anuncio-bar.visible{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+    .anuncio-countdown{background:rgba(196,137,42,.25);border:1px solid #C4892A;border-radius:4px;padding:2px 10px;font-family:'Bebas Neue',sans-serif;letter-spacing:.08em;font-size:.95rem;color:#E0A83C}
+    .trust-stats{background:#EDE0CC;padding:18px 40px;border-top:1px solid #D4C0A4}
+    .trust-stats-inner{max-width:1280px;margin:0 auto;display:flex;justify-content:center;gap:48px;flex-wrap:wrap}
+    .trust-stat{text-align:center}
+    .trust-stat-num{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:.05em;color:#2A4A1A;line-height:1}
+    .trust-stat-lbl{font-size:.82rem;color:#7A6050;margin-top:2px}
+    #resenas{background:#EDE0CC}
+    .resenas-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;margin-top:8px}
+    .resena-card{background:#FFFDF8;border:1.5px solid #D4C0A4;border-radius:12px;padding:22px;display:flex;flex-direction:column;gap:12px}
+    .resena-stars{color:#E0A83C;font-size:1.1rem;letter-spacing:2px}
+    .resena-texto{font-family:'Crimson Pro',serif;font-size:1.05rem;color:#3A2A1A;line-height:1.6;flex:1;font-style:italic}
+    .resena-autor{display:flex;align-items:center;gap:10px}
+    .resena-avatar{width:38px;height:38px;border-radius:50%;background:#2A4A1A;color:#F5EDE0;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:.95rem;flex-shrink:0}
+    .resena-nombre{font-weight:600;font-size:.92rem;color:#3A2A1A}
+    .stock-qty{font-size:.75rem;color:#c0392b;font-weight:600;margin-top:2px}
+    .ventas-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}
+    .venta-stat{background:#1A120A;color:#fff;border-radius:10px;padding:16px;text-align:center}
+    .venta-stat-val{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:#E0A83C;letter-spacing:.05em}
+    .venta-stat-lbl{font-size:.78rem;color:rgba(255,255,255,.55);margin-top:2px}
+    .ventas-list{display:flex;flex-direction:column;gap:8px}
+    .venta-row{background:#fff;border-radius:8px;padding:12px 16px;display:grid;grid-template-columns:auto 1fr auto auto;gap:10px;align-items:center;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+    .venta-status{font-size:.72rem;font-weight:600;padding:3px 9px;border-radius:4px;white-space:nowrap}
+    .vs-nuevo{background:#E1F5EE;color:#085041}.vs-proceso{background:#FAEEDA;color:#633806}.vs-enviado{background:#E6F1FB;color:#0C447C}.vs-entregado{background:#EAF3DE;color:#27500A}
+    .venta-cliente{font-size:.9rem;font-weight:600;color:#1A120A}
+    .venta-productos{font-size:.8rem;color:#888;margin-top:2px}
+    .venta-total{font-size:.9rem;font-weight:600;color:#2A4A1A;white-space:nowrap}
+    .venta-acciones{display:flex;gap:4px}
+    .btn-venta-estado{font-size:.72rem;padding:3px 8px;border-radius:4px;background:#EDE0CC;color:#3A2A1A;transition:background .15s}.btn-venta-estado:hover{background:#C4892A;color:#fff}
+    .btn-venta-del{font-size:.72rem;padding:3px 8px;border-radius:4px;background:#fde8e8;color:#c0392b}.btn-venta-del:hover{background:#c0392b;color:#fff}
+    .add-venta-form{background:#fff;border-radius:10px;padding:18px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+    .add-venta-form h4{font-family:'Bebas Neue',sans-serif;letter-spacing:.1em;color:#1A120A;margin-bottom:12px;font-size:1rem}
+    .add-venta-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+    .add-venta-grid input,.add-venta-grid select{padding:8px 12px;border:1.5px solid #ccc;border-radius:6px;font-size:.88rem;font-family:inherit;outline:none}.add-venta-grid input:focus,.add-venta-grid select:focus{border-color:#2A4A1A}
+    .add-venta-grid .full{grid-column:1/-1}
+    .anuncio-admin-form{background:#fff;border-radius:10px;padding:20px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+    .anuncio-admin-form h4{font-family:'Bebas Neue',sans-serif;letter-spacing:.1em;color:#1A120A;margin-bottom:14px;font-size:1rem}
+    .anuncio-toggle-row{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+    .toggle-switch{position:relative;width:44px;height:24px;flex-shrink:0}
+    .toggle-switch input{opacity:0;width:0;height:0;position:absolute}
+    .toggle-slider{position:absolute;inset:0;background:#ccc;border-radius:12px;transition:background .2s;cursor:pointer}
+    .toggle-slider:before{content:'';position:absolute;width:18px;height:18px;left:3px;top:3px;background:#fff;border-radius:50%;transition:transform .2s}
+    .toggle-switch input:checked+.toggle-slider{background:#2A4A1A}
+    .toggle-switch input:checked+.toggle-slider:before{transform:translateX(20px)}
+    .anuncio-admin-field{margin-bottom:12px}
+    .anuncio-admin-field label{display:block;font-size:.78rem;font-family:'Bebas Neue',sans-serif;letter-spacing:.1em;color:#7A6050;margin-bottom:4px}
+    .anuncio-admin-field input{width:100%;padding:10px 12px;border:1.5px solid #ccc;border-radius:7px;font-size:.92rem;font-family:inherit;outline:none}.anuncio-admin-field input:focus{border-color:#2A4A1A}
+    .resena-admin-row{background:#fff;border-radius:8px;padding:12px 16px;display:grid;grid-template-columns:1fr auto;gap:10px;align-items:start;box-shadow:0 1px 4px rgba(0,0,0,.06);margin-bottom:8px}
   </style>
 </head>
 <body>
@@ -247,6 +297,7 @@
   <p>Cargando tienda...</p>
 </div>
 
+<div class="anuncio-bar" id="anuncioBar"></div>
 <div class="topbar">📦 Envíos a todo el país por Correo Argentino &nbsp;|&nbsp; <a href="https://wa.me/542364542207">WhatsApp: +54 2364 542207</a></div>
 <nav>
   <div class="nav-inner">
@@ -296,6 +347,14 @@
     <div class="trust-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C4892A" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Compra 100% segura</div>
     <div class="trust-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C4892A" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Artesanía argentina</div>
     <div class="trust-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C4892A" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Mayoristas</div>
+  </div>
+</div>
+
+<div class="trust-stats" id="trustStats">
+  <div class="trust-stats-inner">
+    <div class="trust-stat"><div class="trust-stat-num" id="statVentas">500</div><div class="trust-stat-lbl">Mates vendidos</div></div>
+    <div class="trust-stat"><div class="trust-stat-num" id="statClientes">200</div><div class="trust-stat-lbl">Clientes felices</div></div>
+    <div class="trust-stat"><div class="trust-stat-num" id="statEnvios">50</div><div class="trust-stat-lbl">Envíos este mes</div></div>
   </div>
 </div>
 
@@ -385,6 +444,17 @@
         </form>
       </div>
     </div>
+  </div>
+</section>
+
+<section id="resenas">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="section-eyebrow">Lo que dicen nuestros clientes</p>
+      <h2 class="section-title">Reseñas reales</h2>
+      <div class="section-sep"></div>
+    </div>
+    <div class="resenas-grid" id="resenasGrid"></div>
   </div>
 </section>
 
@@ -480,8 +550,12 @@
   </div>
   <div class="admin-tabs">
     <button class="admin-tab active" onclick="switchTab('productos',this)">📦 PRODUCTOS</button>
+    <button class="admin-tab" onclick="switchTab('ventas',this)">💰 VENTAS</button>
+    <button class="admin-tab" onclick="switchTab('anuncio',this)">📢 ANUNCIO</button>
+    <button class="admin-tab" onclick="switchTab('resenas-admin',this)">⭐ RESEÑAS</button>
     <button class="admin-tab" onclick="switchTab('envios',this)">🚚 ENVÍOS</button>
     <button class="admin-tab" onclick="switchTab('pagos',this)">💳 PAGOS</button>
+    <button class="admin-tab" onclick="switchTab('estadisticas',this)">📊 ESTADÍSTICAS</button>
     <button class="admin-tab" onclick="switchTab('password',this)">🔑 CONTRASEÑA</button>
   </div>
   <div class="admin-body">
@@ -515,6 +589,68 @@
           <button class="btn-add-item" onclick="addPago()">+ AGREGAR</button>
         </div>
         <div class="admin-saved-badge" id="pagosSaved">✅ ¡Guardado!</div>
+      </div>
+    </div>
+    <div class="admin-section" id="tab-ventas">
+      <div class="ventas-stats">
+        <div class="venta-stat"><div class="venta-stat-val" id="ventasMes">$0</div><div class="venta-stat-lbl">Este mes</div></div>
+        <div class="venta-stat"><div class="venta-stat-val" id="ventasTotal">0</div><div class="venta-stat-lbl">Pedidos totales</div></div>
+        <div class="venta-stat"><div class="venta-stat-val" id="ventasPendientes">0</div><div class="venta-stat-lbl">Sin enviar</div></div>
+      </div>
+      <div class="add-venta-form">
+        <h4>+ Registrar pedido nuevo</h4>
+        <div class="add-venta-grid">
+          <input type="text" id="ventaCliente" placeholder="Nombre del cliente"/>
+          <input type="number" id="ventaTotal" placeholder="Total ($)"/>
+          <input type="text" id="ventaProductos" placeholder="Productos (ej: Kit mate + Yerba)" class="full"/>
+          <select id="ventaCanal"><option value="whatsapp">WhatsApp</option><option value="mercadolibre">Mercado Libre</option><option value="tienda">Tienda web</option><option value="efectivo">Efectivo</option></select>
+          <select id="ventaEstado"><option value="nuevo">🟢 Nuevo</option><option value="proceso">🟡 En proceso</option><option value="enviado">🔵 Enviado</option><option value="entregado">✅ Entregado</option></select>
+        </div>
+        <button class="btn-add-prod" onclick="registrarVenta()">+ REGISTRAR PEDIDO</button>
+      </div>
+      <div class="ventas-list" id="ventasList"></div>
+    </div>
+    <div class="admin-section" id="tab-anuncio">
+      <div class="anuncio-admin-form">
+        <h4>📢 Banner de anuncio / novedad</h4>
+        <div class="anuncio-toggle-row">
+          <label class="toggle-switch"><input type="checkbox" id="anuncioActivo" onchange="toggleAnuncio()"/><span class="toggle-slider"></span></label>
+          <span style="font-size:.9rem;color:#555" id="anuncioEstadoLabel">Anuncio desactivado</span>
+        </div>
+        <div class="anuncio-admin-field"><label>Texto del anuncio (podés usar emojis)</label><input type="text" id="anuncioTexto" placeholder="🔥 20% OFF en kits este finde · Envío gratis desde $30.000" oninput="previewAnuncio()"/></div>
+        <div class="anuncio-toggle-row" style="margin-top:8px">
+          <label class="toggle-switch"><input type="checkbox" id="anuncioCountdown" onchange="previewAnuncio()"/><span class="toggle-slider"></span></label>
+          <span style="font-size:.88rem;color:#555">Mostrar contador regresivo</span>
+        </div>
+        <div class="anuncio-admin-field" id="anuncioHastaWrap"><label>Cuenta regresiva hasta (fecha y hora)</label><input type="datetime-local" id="anuncioHasta"/></div>
+        <div style="margin-top:6px;background:#f4f4f4;border-radius:8px;padding:12px;font-size:.85rem;color:#555">
+          <strong>Vista previa:</strong> <span id="anuncioPreview" style="color:#2A4A1A">—</span>
+        </div>
+        <button class="btn-modal-save" onclick="saveAnuncio()" style="margin-top:14px;width:100%">💾 GUARDAR ANUNCIO</button>
+      </div>
+      <div style="margin-top:16px;background:#fff;border-radius:10px;padding:18px;box-shadow:0 1px 4px rgba(0,0,0,.06)">
+        <h4 style="font-family:Bebas Neue,sans-serif;letter-spacing:.1em;color:#1A120A;margin-bottom:14px;font-size:1rem">📊 Estadísticas visibles en el sitio</h4>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
+          <div class="anuncio-admin-field"><label>Mates vendidos</label><input type="number" id="cfgStatVentas" placeholder="500"/></div>
+          <div class="anuncio-admin-field"><label>Clientes felices</label><input type="number" id="cfgStatClientes" placeholder="200"/></div>
+          <div class="anuncio-admin-field"><label>Envíos este mes</label><input type="number" id="cfgStatEnvios" placeholder="50"/></div>
+        </div>
+        <button class="btn-modal-save" onclick="saveEstadisticas()" style="margin-top:8px">GUARDAR ESTADÍSTICAS</button>
+      </div>
+    </div>
+    <div class="admin-section" id="tab-resenas-admin">
+      <div class="admin-toolbar">
+        <h3 style="font-family:Playfair Display,serif;color:#1A120A;font-size:1.1rem">⭐ Reseñas de clientes</h3>
+        <button class="btn-add-prod" onclick="openNewResena()" style="margin-left:auto">+ NUEVA RESEÑA</button>
+      </div>
+      <div id="resenasAdminList"></div>
+    </div>
+    <div class="admin-section" id="tab-estadisticas">
+      <div class="admin-list-section">
+        <h3>📊 Resumen del negocio</h3>
+        <p style="font-size:.88rem;color:#888;margin-bottom:20px">Datos cargados desde tus pedidos registrados.</p>
+        <div class="ventas-stats" id="estadisticasResumen"></div>
+        <canvas id="ventasChart" style="max-height:260px;margin-top:20px"></canvas>
       </div>
     </div>
     <div class="admin-section" id="tab-password">
@@ -636,7 +772,9 @@ const PRODUCTOS_DEFAULT=[
 const ENVIOS_DEFAULT=['📮 Correo Argentino','🤝 A acordar'];
 const PAGOS_DEFAULT=['MercadoPago','Visa','Mastercard','American Express','Naranja','Cabal','PagoFácil','Rapipago'];
 
-let PRODUCTOS=[],ENVIOS=[],PAGOS=[],cart=[],currentCat='todos',logoClicks=0,logoTimer=null,dbPassword='fyf2025';
+let PRODUCTOS=[],ENVIOS=[],PAGOS=[],RESENAS=[],VENTAS=[],cart=[],currentCat='todos',logoClicks=0,logoTimer=null,dbPassword='fyf2025';
+let ANUNCIO={activo:false,texto:'',countdown:false,hasta:''},STATS={ventas:500,clientes:200,envios:50};
+let countdownTimer=null;
 
 function toRow(p,i){return{id:p.id,nombre:p.nombre,cat:p.cat,cat_label:p.catLabel,precio:p.precio,stock:p.stock,atrib:p.atrib||'',descripcion:p.desc||'',img:p.img||'',badge:p.badge||'none',badge_text:p.badgeText||'',orden:i};}
 function fromRow(r){return{id:r.id,nombre:r.nombre,cat:r.cat,catLabel:r.cat_label,precio:r.precio,stock:r.stock,atrib:r.atrib||'',desc:r.descripcion||'',img:r.img||'',badge:r.badge||'none',badgeText:r.badge_text||''};}
@@ -654,10 +792,15 @@ async function loadData(){
     if(!pe&&prods&&prods.length>0){PRODUCTOS=prods.map(fromRow);}
     else{PRODUCTOS=[...PRODUCTOS_DEFAULT];await sb.from('productos').upsert(PRODUCTOS_DEFAULT.map((p,i)=>toRow(p,i)));}
     const{data:cfg}=await sb.from('configuracion').select('*').eq('id',1).single();
-    if(cfg){ENVIOS=cfg.envios||ENVIOS_DEFAULT;PAGOS=cfg.pagos||PAGOS_DEFAULT;dbPassword=cfg.password||'fyf2025';}
-    else{ENVIOS=[...ENVIOS_DEFAULT];PAGOS=[...PAGOS_DEFAULT];}
-  }catch(e){PRODUCTOS=[...PRODUCTOS_DEFAULT];ENVIOS=[...ENVIOS_DEFAULT];PAGOS=[...PAGOS_DEFAULT];}
-  showLoading(false);renderProducts();renderFooter();
+    if(cfg){
+      ENVIOS=cfg.envios||ENVIOS_DEFAULT;PAGOS=cfg.pagos||PAGOS_DEFAULT;dbPassword=cfg.password||'fyf2025';
+      ANUNCIO={activo:cfg.anuncio_activo||false,texto:cfg.anuncio_texto||'',countdown:cfg.anuncio_countdown||false,hasta:cfg.anuncio_hasta||''};
+      STATS={ventas:cfg.stat_ventas||500,clientes:cfg.stat_clientes||200,envios:cfg.stat_envios||50};
+    } else{ENVIOS=[...ENVIOS_DEFAULT];PAGOS=[...PAGOS_DEFAULT];ANUNCIO={activo:false,texto:'',countdown:false,hasta:''};STATS={ventas:500,clientes:200,envios:50};}
+    const{data:ress}=await sb.from('resenas').select('*').eq('activa',true).order('orden');
+    if(ress)RESENAS=ress;
+  }catch(e){PRODUCTOS=[...PRODUCTOS_DEFAULT];ENVIOS=[...ENVIOS_DEFAULT];PAGOS=[...PAGOS_DEFAULT];ANUNCIO={activo:false,texto:'',countdown:false,hasta:''};STATS={ventas:500,clientes:200,envios:50};}
+  showLoading(false);renderProducts();renderFooter();renderAnuncio();renderStats();renderResenas();
 }
 
 function getPass(){return dbPassword;}
@@ -782,6 +925,156 @@ function changePassword(){
   msg.style.display='block';msg.style.color='#1a5c2a';msg.textContent='✅ ¡Contraseña cambiada!';
   document.getElementById('passActual').value='';document.getElementById('passNueva').value='';document.getElementById('passConfirm').value='';
 }
+
+/* === ANUNCIO === */
+function renderAnuncio(){
+  const bar=document.getElementById('anuncioBar');if(!bar)return;
+  if(!ANUNCIO.activo||!ANUNCIO.texto){bar.className='anuncio-bar';return;}
+  bar.innerHTML=`<span>${ANUNCIO.texto}</span>${ANUNCIO.countdown&&ANUNCIO.hasta?'<span class="anuncio-countdown" id="cdTimer">--:--:--</span>':''}`;
+  bar.className='anuncio-bar visible';
+  if(ANUNCIO.countdown&&ANUNCIO.hasta){startCountdown(new Date(ANUNCIO.hasta));}
+}
+function startCountdown(end){
+  if(countdownTimer)clearInterval(countdownTimer);
+  function tick(){
+    const el=document.getElementById('cdTimer');if(!el)return;
+    const diff=end-new Date();if(diff<=0){el.textContent='¡Oferta terminada!';clearInterval(countdownTimer);return;}
+    const h=String(Math.floor(diff/3600000)).padStart(2,'0');
+    const m=String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+    const s=String(Math.floor((diff%60000)/1000)).padStart(2,'0');
+    el.textContent=h+':'+m+':'+s;
+  }
+  tick();countdownTimer=setInterval(tick,1000);
+}
+function renderStats(){
+  const sv=document.getElementById('statVentas');const sc=document.getElementById('statClientes');const se=document.getElementById('statEnvios');
+  if(sv)sv.textContent='+'+STATS.ventas;if(sc)sc.textContent='+'+STATS.clientes;if(se)se.textContent='+'+STATS.envios;
+}
+/* === RESEÑAS PÚBLICAS === */
+function renderResenas(){
+  const grid=document.getElementById('resenasGrid');if(!grid)return;
+  if(!RESENAS||!RESENAS.length){grid.innerHTML='<p style="color:#888;text-align:center;grid-column:1/-1">Pronto publicamos reseñas.</p>';return;}
+  grid.innerHTML=RESENAS.map(function(r){
+    const initials=(r.nombre||'?').split(' ').map(function(w){return w[0];}).join('').substring(0,2).toUpperCase();
+    const stars='★'.repeat(r.estrellas||5)+'☆'.repeat(5-(r.estrellas||5));
+    return '<div class="resena-card"><div class="resena-stars">'+stars+'</div><p class="resena-texto">"'+r.texto+'"</p><div class="resena-autor"><div class="resena-avatar">'+initials+'</div><span class="resena-nombre">'+r.nombre+'</span></div></div>';
+  }).join('');
+}
+/* === RESEÑAS ADMIN === */
+function renderResenasAdmin(){
+  const list=document.getElementById('resenasAdminList');if(!list)return;
+  sb.from('resenas').select('*').order('orden').then(function(res){
+    const data=res.data;
+    if(!data||!data.length){list.innerHTML='<p style="color:#888;padding:20px">No hay reseñas. Agregá la primera con el botón de arriba.</p>';return;}
+    list.innerHTML=data.map(function(r){
+      return '<div class="resena-admin-row"><div><div style="color:#E0A83C;font-size:.9rem">'+'★'.repeat(r.estrellas||5)+'</div><strong style="font-size:.9rem">'+r.nombre+'</strong><p style="font-size:.82rem;color:#888;margin-top:2px;font-style:italic">"'+r.texto+'"</p></div><div style="display:flex;flex-direction:column;gap:4px"><button class="btn-del-prod" onclick="deleteResena('+r.id+')">🗑</button><button class="btn-edit-prod" style="font-size:.7rem" onclick="toggleResenaActiva('+r.id+','+(!r.activa)+')">'+(r.activa?'Ocultar':'Mostrar')+'</button></div></div>';
+    }).join('');
+  });
+}
+function openNewResena(){
+  const nombre=prompt('Nombre del cliente:');if(!nombre)return;
+  const texto=prompt('Texto de la reseña:');if(!texto)return;
+  const estr=parseInt(prompt('Estrellas (1-5):')||'5');
+  sb.from('resenas').insert([{nombre:nombre,texto:texto,estrellas:estr,activa:true,orden:999}]).then(function(res){
+    if(!res.error){
+      showToast('✅ Reseña agregada');
+      renderResenasAdmin();
+      sb.from('resenas').select('*').eq('activa',true).order('orden').then(function(r2){if(r2.data){RESENAS=r2.data;renderResenas();}});
+    } else showToast('❌ Error al guardar');
+  });
+}
+function deleteResena(id){if(!confirm('¿Eliminar esta reseña?'))return;sb.from('resenas').delete().eq('id',id).then(function(){showToast('Reseña eliminada');renderResenasAdmin();});}
+function toggleResenaActiva(id,activa){sb.from('resenas').update({activa:activa}).eq('id',id).then(function(){showToast(activa?'Reseña visible':'Reseña oculta');renderResenasAdmin();});}
+/* === ANUNCIO ADMIN === */
+function toggleAnuncio(){
+  const on=document.getElementById('anuncioActivo').checked;
+  document.getElementById('anuncioEstadoLabel').textContent=on?'Anuncio activo — se muestra en el sitio':'Anuncio desactivado';
+  previewAnuncio();
+}
+function previewAnuncio(){
+  const txt=document.getElementById('anuncioTexto')?document.getElementById('anuncioTexto').value||'—':'—';
+  const el=document.getElementById('anuncioPreview');if(el)el.textContent=txt;
+}
+async function saveAnuncio(){
+  const activo=document.getElementById('anuncioActivo').checked;
+  const texto=document.getElementById('anuncioTexto').value;
+  const countdown=document.getElementById('anuncioCountdown').checked;
+  const hasta=document.getElementById('anuncioHasta').value;
+  const res=await sb.from('configuracion').update({anuncio_activo:activo,anuncio_texto:texto,anuncio_countdown:countdown,anuncio_hasta:hasta||null}).eq('id',1);
+  if(!res.error){ANUNCIO={activo:activo,texto:texto,countdown:countdown,hasta:hasta};renderAnuncio();showToast('✅ Anuncio guardado y publicado');}
+  else showToast('❌ Error al guardar');
+}
+async function saveEstadisticas(){
+  const sv=parseInt(document.getElementById('cfgStatVentas').value)||500;
+  const sc=parseInt(document.getElementById('cfgStatClientes').value)||200;
+  const se=parseInt(document.getElementById('cfgStatEnvios').value)||50;
+  const res=await sb.from('configuracion').update({stat_ventas:sv,stat_clientes:sc,stat_envios:se}).eq('id',1);
+  if(!res.error){STATS={ventas:sv,clientes:sc,envios:se};renderStats();showToast('✅ Estadísticas guardadas');}
+  else showToast('❌ Error');
+}
+/* === VENTAS === */
+async function loadVentas(){
+  const res=await sb.from('ventas').select('*').order('created_at',{ascending:false});
+  if(res.data)VENTAS=res.data;
+  renderVentas();
+}
+function renderVentas(){
+  const list=document.getElementById('ventasList');if(!list)return;
+  const ahora=new Date();const inicioMes=new Date(ahora.getFullYear(),ahora.getMonth(),1);
+  const delMes=VENTAS.filter(function(v){return new Date(v.created_at)>=inicioMes;});
+  const totalMes=delMes.reduce(function(s,v){return s+(v.total||0);},0);
+  const pendientes=VENTAS.filter(function(v){return v.estado==='nuevo'||v.estado==='proceso';}).length;
+  const vm=document.getElementById('ventasMes');const vt=document.getElementById('ventasTotal');const vp=document.getElementById('ventasPendientes');
+  if(vm)vm.textContent='$'+totalMes.toLocaleString('es-AR');if(vt)vt.textContent=VENTAS.length;if(vp)vp.textContent=pendientes;
+  const estadoClass={nuevo:'vs-nuevo',proceso:'vs-proceso',enviado:'vs-enviado',entregado:'vs-entregado'};
+  const estadoLabel={nuevo:'🟢 Nuevo',proceso:'🟡 Proceso',enviado:'🔵 Enviado',entregado:'✅ Entregado'};
+  if(!VENTAS.length){list.innerHTML='<p style="color:#888;text-align:center;padding:30px">No hay pedidos registrados aún.</p>';return;}
+  list.innerHTML=VENTAS.map(function(v){
+    return '<div class="venta-row"><span class="venta-status '+(estadoClass[v.estado]||'vs-nuevo')+'">'+(estadoLabel[v.estado]||v.estado)+'</span><div><div class="venta-cliente">'+(v.cliente||'Cliente')+'</div><div class="venta-productos">'+(v.productos_txt||'')+(v.canal?' · '+v.canal:'')+'</div></div><div class="venta-total">$'+(v.total||0).toLocaleString('es-AR')+'</div><div class="venta-acciones"><select class="btn-venta-estado" onchange="cambiarEstadoVenta('+v.id+',this.value)"><option value="nuevo"'+(v.estado==='nuevo'?' selected':'')+'>Nuevo</option><option value="proceso"'+(v.estado==='proceso'?' selected':'')+'>Proceso</option><option value="enviado"'+(v.estado==='enviado'?' selected':'')+'>Enviado</option><option value="entregado"'+(v.estado==='entregado'?' selected':'')+'>Entregado</option></select><button class="btn-venta-del" onclick="deleteVenta('+v.id+')">🗑</button></div></div>';
+  }).join('');
+}
+async function registrarVenta(){
+  const cliente=document.getElementById('ventaCliente').value.trim();
+  const total=parseInt(document.getElementById('ventaTotal').value)||0;
+  const prods=document.getElementById('ventaProductos').value.trim();
+  const canal=document.getElementById('ventaCanal').value;
+  const estado=document.getElementById('ventaEstado').value;
+  if(!cliente){showToast('❌ Ingresá el nombre del cliente');return;}
+  const res=await sb.from('ventas').insert([{cliente:cliente,total:total,productos_txt:prods,canal:canal,estado:estado}]).select();
+  if(!res.error&&res.data){
+    VENTAS.unshift(res.data[0]);renderVentas();
+    document.getElementById('ventaCliente').value='';document.getElementById('ventaTotal').value='';document.getElementById('ventaProductos').value='';
+    showToast('✅ Pedido registrado');
+  } else showToast('❌ Error al guardar');
+}
+async function cambiarEstadoVenta(id,estado){
+  await sb.from('ventas').update({estado:estado}).eq('id',id);
+  const v=VENTAS.find(function(x){return x.id===id;});if(v){v.estado=estado;renderVentas();}
+  showToast('Estado actualizado');
+}
+async function deleteVenta(id){
+  if(!confirm('¿Eliminar este pedido?'))return;
+  await sb.from('ventas').delete().eq('id',id);
+  VENTAS=VENTAS.filter(function(v){return v.id!==id;});renderVentas();showToast('Pedido eliminado');
+}
+/* === OVERRIDE switchTab para cargar datos al entrar a cada tab === */
+const switchTabOrig=switchTab;
+switchTab=function(name,el){
+  switchTabOrig(name,el);
+  if(name==='ventas')loadVentas();
+  if(name==='resenas-admin')renderResenasAdmin();
+  if(name==='anuncio'){
+    const aa=document.getElementById('anuncioActivo');if(aa)aa.checked=ANUNCIO.activo;
+    const at=document.getElementById('anuncioTexto');if(at)at.value=ANUNCIO.texto||'';
+    const ac=document.getElementById('anuncioCountdown');if(ac)ac.checked=ANUNCIO.countdown||false;
+    const ah=document.getElementById('anuncioHasta');if(ah&&ANUNCIO.hasta)ah.value=ANUNCIO.hasta.substring(0,16);
+    const sv=document.getElementById('cfgStatVentas');if(sv)sv.value=STATS.ventas;
+    const sc=document.getElementById('cfgStatClientes');if(sc)sc.value=STATS.clientes;
+    const se=document.getElementById('cfgStatEnvios');if(se)se.value=STATS.envios;
+    document.getElementById('anuncioEstadoLabel').textContent=ANUNCIO.activo?'Anuncio activo — se muestra en el sitio':'Anuncio desactivado';
+    previewAnuncio();
+  }
+};
 loadData();
 </script>
 </body>
