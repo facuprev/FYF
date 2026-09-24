@@ -656,7 +656,7 @@
         <h3>🔑 Cambiar Contraseña</h3>
         <p style="font-size:.88rem;color:#888;margin-bottom:20px">La contraseña se guarda en la nube.</p>
         <div class="modal-field" style="margin-bottom:14px"><label>Contraseña actual</label><input type="password" id="passActual" placeholder="Contraseña actual"/></div>
-        <div class="modal-field" style="margin-bottom:14px"><label>Nueva contraseña</label><input type="password" id="passNueva" placeholder="Mínimo 4 caracteres"/></div>
+        <div class="modal-field" style="margin-bottom:14px"><label>Nueva contraseña</label><input type="password" id="passNueva" placeholder="Mínimo 6 caracteres"/></div>
         <div class="modal-field" style="margin-bottom:18px"><label>Confirmar nueva contraseña</label><input type="password" id="passConfirm" placeholder="Repetí la nueva contraseña"/></div>
         <button class="btn-modal-save" onclick="changePassword()" style="width:100%">CAMBIAR CONTRASEÑA</button>
         <div id="passMsg" style="margin-top:10px;font-size:.85rem;display:none"></div>
@@ -770,7 +770,8 @@ const PRODUCTOS_DEFAULT=[
 const ENVIOS_DEFAULT=['📮 Correo Argentino','🤝 A acordar'];
 const PAGOS_DEFAULT=['MercadoPago','Visa','Mastercard','American Express','Naranja','Cabal','PagoFácil','Rapipago'];
 
-let PRODUCTOS=[],ENVIOS=[],PAGOS=[],RESENAS=[],VENTAS=[],cart=[],currentCat='todos',logoClicks=0,logoTimer=null,dbPassword='fyf2025';
+const ADMIN_EMAIL='facprev@gmail.com';
+let PRODUCTOS=[],ENVIOS=[],PAGOS=[],RESENAS=[],VENTAS=[],cart=[],currentCat='todos',logoClicks=0,logoTimer=null;
 let ANUNCIO={activo:false,texto:'',countdown:false,hasta:''},STATS={ventas:500,clientes:200,envios:50};
 let countdownTimer=null;
 
@@ -791,7 +792,7 @@ async function loadData(){
     else{PRODUCTOS=[...PRODUCTOS_DEFAULT];await sb.from('productos').upsert(PRODUCTOS_DEFAULT.map((p,i)=>toRow(p,i)));}
     const{data:cfg}=await sb.from('configuracion').select('*').eq('id',1).single();
     if(cfg){
-      ENVIOS=cfg.envios||ENVIOS_DEFAULT;PAGOS=cfg.pagos||PAGOS_DEFAULT;dbPassword=cfg.password||'fyf2025';
+      ENVIOS=cfg.envios||ENVIOS_DEFAULT;PAGOS=cfg.pagos||PAGOS_DEFAULT;
       ANUNCIO={activo:cfg.anuncio_activo||false,texto:cfg.anuncio_texto||'',countdown:cfg.anuncio_countdown||false,hasta:cfg.anuncio_hasta||''};
       STATS={ventas:cfg.stat_ventas||500,clientes:cfg.stat_clientes||200,envios:cfg.stat_envios||50};
     } else{ENVIOS=[...ENVIOS_DEFAULT];PAGOS=[...PAGOS_DEFAULT];ANUNCIO={activo:false,texto:'',countdown:false,hasta:''};STATS={ventas:500,clientes:200,envios:50};}
@@ -801,14 +802,12 @@ async function loadData(){
   showLoading(false);renderProducts();renderFooter();renderAnuncio();renderStats();renderResenas();
 }
 
-function getPass(){return dbPassword;}
-
 async function saveAll(){
   const btn=document.querySelector('.admin-save-all');
   if(btn){btn.textContent='💾 GUARDANDO...';btn.disabled=true;}
   try{
     const{error}=await sb.from('productos').upsert(PRODUCTOS.map((p,i)=>toRow(p,i)));
-    await sb.from('configuracion').upsert({id:1,envios:ENVIOS,pagos:PAGOS,password:dbPassword});
+    await sb.from('configuracion').upsert({id:1,envios:ENVIOS,pagos:PAGOS});
     renderProducts();renderFooter();
     showToast(error?'❌ Error al guardar':'☁️ ¡Guardado en la nube! Todos los clientes ven los cambios.');
   }catch(e){showToast('❌ Error de conexión');}
@@ -886,7 +885,15 @@ document.getElementById('logoEl').addEventListener('click',function(){logoClicks
 document.addEventListener('keydown',function(e){if(e.ctrlKey&&e.shiftKey&&e.key==='A'){e.preventDefault();openAdminLogin();}});
 function openAdminLogin(){document.getElementById('adminPassInput').value='';document.getElementById('loginError').style.display='none';document.getElementById('adminLoginOverlay').classList.add('open');setTimeout(()=>document.getElementById('adminPassInput').focus(),100);}
 function closeAdminLogin(){document.getElementById('adminLoginOverlay').classList.remove('open');}
-function checkAdminPass(){const val=document.getElementById('adminPassInput').value;if(val===getPass()){closeAdminLogin();openAdmin();}else{document.getElementById('loginError').style.display='block';}}
+async function checkAdminPass(){
+  const val=document.getElementById('adminPassInput').value;
+  const btn=document.querySelector('.admin-login .btn-login');
+  if(btn){btn.textContent='Ingresando...';btn.disabled=true;}
+  const{error}=await sb.auth.signInWithPassword({email:ADMIN_EMAIL,password:val});
+  if(btn){btn.textContent='INGRESAR';btn.disabled=false;}
+  if(!error){closeAdminLogin();openAdmin();}
+  else{document.getElementById('loginError').style.display='block';}
+}
 function openAdmin(){document.getElementById('adminPanel').classList.add('open');renderAdminProducts();renderAdminEnvios();renderAdminPagos();}
 function closeAdmin(){document.getElementById('adminPanel').classList.remove('open');}
 function switchTab(name,btn){document.querySelectorAll('.admin-section').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));document.getElementById('tab-'+name).classList.add('active');btn.classList.add('active');}
@@ -931,12 +938,14 @@ function addEnvio(){const v=document.getElementById('newEnvio').value.trim();if(
 function renderAdminPagos(){const list=document.getElementById('pagosList');list.innerHTML=PAGOS.map((p,i)=>`<div class="admin-item-row"><input type="text" value="${p}" onchange="PAGOS[${i}]=this.value"/><button class="btn-del-item" onclick="PAGOS.splice(${i},1);renderAdminPagos()">✕</button></div>`).join('');}
 function addPago(){const v=document.getElementById('newPago').value.trim();if(!v)return;PAGOS.push(v);document.getElementById('newPago').value='';renderAdminPagos();showBadge('pagosSaved');}
 function showBadge(id){const el=document.getElementById(id);el.style.display='block';setTimeout(()=>el.style.display='none',2000);}
-function changePassword(){
-  const actual=document.getElementById('passActual').value;const nueva=document.getElementById('passNueva').value;const confirm=document.getElementById('passConfirm').value;const msg=document.getElementById('passMsg');
-  if(actual!==getPass()){msg.style.display='block';msg.style.color='#c0392b';msg.textContent='❌ Contraseña actual incorrecta';return;}
-  if(nueva.length<4){msg.style.display='block';msg.style.color='#c0392b';msg.textContent='❌ Mínimo 4 caracteres';return;}
-  if(nueva!==confirm){msg.style.display='block';msg.style.color='#c0392b';msg.textContent='❌ Las contraseñas no coinciden';return;}
-  dbPassword=nueva;saveAll();
+async function changePassword(){
+  const actual=document.getElementById('passActual').value;const nueva=document.getElementById('passNueva').value;const confirmv=document.getElementById('passConfirm').value;const msg=document.getElementById('passMsg');
+  if(nueva.length<6){msg.style.display='block';msg.style.color='#c0392b';msg.textContent='❌ Mínimo 6 caracteres';return;}
+  if(nueva!==confirmv){msg.style.display='block';msg.style.color='#c0392b';msg.textContent='❌ Las contraseñas no coinciden';return;}
+  const{error:reErr}=await sb.auth.signInWithPassword({email:ADMIN_EMAIL,password:actual});
+  if(reErr){msg.style.display='block';msg.style.color='#c0392b';msg.textContent='❌ Contraseña actual incorrecta';return;}
+  const{error}=await sb.auth.updateUser({password:nueva});
+  if(error){msg.style.display='block';msg.style.color='#c0392b';msg.textContent='❌ Error: '+error.message;return;}
   msg.style.display='block';msg.style.color='#1a5c2a';msg.textContent='✅ ¡Contraseña cambiada!';
   document.getElementById('passActual').value='';document.getElementById('passNueva').value='';document.getElementById('passConfirm').value='';
 }
