@@ -892,7 +892,7 @@ async function checkAdminPass(){
   const{error}=await sb.auth.signInWithPassword({email:ADMIN_EMAIL,password:val});
   if(btn){btn.textContent='INGRESAR';btn.disabled=false;}
   if(!error){closeAdminLogin();openAdmin();}
-  else{document.getElementById('loginError').style.display='block';}
+  else{const le=document.getElementById('loginError');le.textContent='❌ '+(error.message||'Contraseña incorrecta');le.style.display='block';}
 }
 function openAdmin(){document.getElementById('adminPanel').classList.add('open');renderAdminProducts();renderAdminEnvios();renderAdminPagos();}
 function closeAdmin(){document.getElementById('adminPanel').classList.remove('open');}
