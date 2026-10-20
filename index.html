@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>FYF – Mates, Yerbas & Accesorios Artesanales | Tienda Online Argentina</title>
+  <title>FYF — Vista previa local segura</title>
   <meta name="description" content="FYF: mates artesanales, yerbas seleccionadas, bombillas y accesorios. Envíos a todo el país por Correo Argentino. Pagá con MercadoPago."/>
   <meta name="keywords" content="mates artesanales, yerba mate, bombillas, mates camioneros, mates imperiales, FYF, comprar mate online argentina"/>
-  <meta name="robots" content="index,follow"/>
+  <meta name="robots" content="noindex,nofollow"/>
   <meta name="google-site-verification" content="cCNHcAjF3-JWEZL0r4SYZdAnkxeeLKiF1u0gGXoeDcs"/>
   <meta property="og:type" content="website"/>
   <meta property="og:title" content="FYF – Mates, Yerbas & Accesorios Artesanales"/>
@@ -310,7 +310,32 @@
     /* === MEJORA CATÁLOGO HEADER === */
     .cat-header-wrap{display:flex;flex-direction:column;align-items:center;margin-bottom:52px}
     .cat-header-line{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:18px 0 0}
-  </style>
+  
+  /* FYF PREVIEW DESIGN POLISH — keeps original layout and behaviors */
+  :root{--green:#315b3d;--green2:#47764f;--green-dark:#23452e;--cream:#ffffff;--cream2:#f5f8f3;--gold:#b6a16a;--text:#253329;--muted:#69766b;--border:#e3e9e1;--radius:16px}
+  body{background:#fff;color:#253329}
+  header,.site-header,.navbar{background:rgba(255,255,255,.97)!important;border-bottom:1px solid #e8eee7!important;box-shadow:0 4px 20px rgba(30,60,35,.04)}
+  .hero{background:linear-gradient(120deg,#f7faf5,#edf4e9)!important}
+  .section-title{color:#274c32}
+  .section-eyebrow{color:#66866a}
+  .section-sep{background:#b6a16a!important}
+  .cat-pill{border-color:#dce6d9!important;color:#3b6042!important;background:#fff!important}
+  .cat-pill.active,.cat-pill:hover{background:#315b3d!important;color:#fff!important;border-color:#315b3d!important}
+  .product-card{border:1px solid #e5ebe3!important;border-radius:16px!important;box-shadow:0 5px 18px rgba(28,60,34,.045)!important;transition:transform .18s ease,box-shadow .18s ease}
+  .product-card:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(28,60,34,.10)!important}
+  .product-price{color:#2f633c!important;font-weight:800}
+  .btn-add,.btn-primary,.checkout-btn{background:#315b3d!important;color:#fff!important;border-radius:10px!important}
+  .btn-add:hover,.btn-primary:hover,.checkout-btn:hover{background:#23452e!important}
+  .product-desc{color:#657167;line-height:1.55}
+  .trust-item svg{stroke:#66866a!important}
+  .trust-stats{background:#f4f8f1!important;color:#315b3d!important}
+  .trust-stat-num{color:#315b3d!important}
+  footer{background:#213d2a!important}
+  .combos-banner{display:none!important}
+  .cart-drawer,.cart-panel{border-color:#dfe8dc}
+  @media(max-width:640px){.product-card{border-radius:13px!important}.product-actions{gap:8px}}
+
+</style>
 </head>
 <body>
 
@@ -388,32 +413,8 @@
       <div class="section-sep"></div>
       <div class="cat-header-line"></div>
     </div>
-
-    <!-- BANNER COMBOS DÍA DE LA MADRE -->
-    <div class="combos-banner">
-      <div class="combos-banner-left">
-        <span class="combos-banner-tag">💝 Edición especial · Día de la Madre</span>
-        <h3 class="combos-banner-title">Regalos que ella<br/><em>nunca va a olvidar</em></h3>
-        <p class="combos-banner-sub">Mates artesanales, bombillas grabadas y cajas de presentación premium. Listos para regalar, sin que tengas que hacer nada más. Enviamos a todo el país. 📦</p>
-        <div class="combos-banner-items">
-          <span class="combo-pill">🌳 Camionero Algarrobo</span>
-          <span class="combo-pill">🥈 Imperial Alpaca</span>
-          <span class="combo-pill">✍️ Todo grabado</span>
-          <span class="combo-pill">📦 Envío incluido</span>
-        </div>
-      </div>
-      <div class="combos-banner-right">
-        <div class="combos-price-box">
-          <div class="combos-price-label">Desde</div>
-          <div class="combos-price-val">$36.000</div>
-        </div>
-        <button class="combos-cta" onclick="var p=document.querySelectorAll('.cat-pill')[1];filterCat('combo',p);document.querySelectorAll('.cat-pill').forEach(b=>b.classList.remove('active'));p.classList.add('active');document.getElementById('productos').scrollIntoView({behavior:'smooth'})">VER COMBOS →</button>
-      </div>
-    </div>
-
     <div class="cat-pills">
       <button class="cat-pill active" onclick="filterCat('todos',this)">Todos</button>
-      <button class="cat-pill" onclick="filterCat('combo',this)" style="background:linear-gradient(135deg,#3D0A1A,#C4892A);color:#fff;border-color:transparent">💝 Combos Mamá</button>
       <button class="cat-pill" onclick="filterCat('mate',this)">Mates</button>
       <button class="cat-pill" onclick="filterCat('bombilla',this)">Bombillas</button>
       <button class="cat-pill" onclick="filterCat('yerba',this)">Yerbas</button>
@@ -838,34 +839,18 @@ function showLoading(show){
 }
 
 async function loadData(){
-  showLoading(true);
-  try{
-    const{data:prods,error:pe}=await sb.from('productos').select('*').order('orden');
-    if(!pe&&prods&&prods.length>0){
-      PRODUCTOS=prods.map(fromRow);
-    }else if(!pe&&prods&&prods.length===0){
-      // Supabase respondió pero no hay productos — primera vez, cargar defaults
-      PRODUCTOS=[...PRODUCTOS_DEFAULT];
-      await sb.from('productos').upsert(PRODUCTOS_DEFAULT.map((p,i)=>toRow(p,i)));
-    }else{
-      // Error de conexión — usar defaults solo en memoria, SIN escribir a Supabase
-      PRODUCTOS=[...PRODUCTOS_DEFAULT];
-    }
-    const{data:cfg}=await sb.from('configuracion').select('*').eq('id',1).single();
-    if(cfg){
-      ENVIOS=cfg.envios||ENVIOS_DEFAULT;PAGOS=cfg.pagos||PAGOS_DEFAULT;dbPassword=cfg.password||'fyf2025';
-      ANUNCIO={activo:cfg.anuncio_activo||false,texto:cfg.anuncio_texto||'',countdown:cfg.anuncio_countdown||false,hasta:cfg.anuncio_hasta||''};
-      STATS={ventas:cfg.stat_ventas||500,clientes:cfg.stat_clientes||200,envios:cfg.stat_envios||50};
-    } else{ENVIOS=[...ENVIOS_DEFAULT];PAGOS=[...PAGOS_DEFAULT];ANUNCIO={activo:false,texto:'',countdown:false,hasta:''};STATS={ventas:500,clientes:200,envios:50};}
-    const{data:ress}=await sb.from('resenas').select('*').eq('activa',true).order('orden');
-    if(ress)RESENAS=ress;
-  }catch(e){PRODUCTOS=[...PRODUCTOS_DEFAULT];ENVIOS=[...ENVIOS_DEFAULT];PAGOS=[...PAGOS_DEFAULT];ANUNCIO={activo:false,texto:'',countdown:false,hasta:''};STATS={ventas:500,clientes:200,envios:50};}
-  showLoading(false);renderProducts();renderFooter();renderAnuncio();renderStats();renderResenas();
+  // VISTA PREVIA LOCAL: no consultar ni escribir en Supabase.
+  // Los registros originales de combos permanecen en PRODUCTOS_DEFAULT; solo se ocultan en la tienda.
+  PRODUCTOS=PRODUCTOS_DEFAULT.map(p=>({...p}));
+  ENVIOS=[...ENVIOS_DEFAULT]; PAGOS=[...PAGOS_DEFAULT];
+  ANUNCIO={activo:false,texto:'',countdown:false,hasta:''};
+  STATS={ventas:500,clientes:200,envios:50};
+  showLoading(false); renderProducts(); renderFooter(); renderAnuncio(); renderStats(); renderResenas();
 }
 
 function getPass(){return dbPassword;}
 
-async function saveAll(){
+async function saveAll(){ showToast('Vista previa: guardado desactivado para proteger tus datos.'); return; /* original implementation retained below, unreachable in preview */
   const btn=document.querySelector('.admin-save-all');
   if(btn){btn.textContent='⏳ GUARDANDO...';btn.disabled=true;}
   let errores=[];let guardados=0;let saltados=[];
@@ -926,7 +911,7 @@ function crearSaveModal(){
   return overlay;
 }
 
-async function deleteProductDB(id){try{await sb.from('productos').delete().eq('id',id);}catch(e){}}
+async function deleteProductDB(id){showToast('Vista previa: eliminación desactivada.'); return;}
 
 const $p=n=>'$'+n.toLocaleString('es-AR');
 function addToCart(id){const p=PRODUCTOS.find(x=>x.id===id);if(!p||!p.stock)return;const ex=cart.find(i=>i.id===id);ex?ex.qty++:cart.push({...p,qty:1});renderCart();updateCount();showToast('✅ '+p.nombre.split(' ').slice(0,3).join(' ')+'... agregado');}
@@ -963,7 +948,7 @@ function sendWspOrder(e){
 function filterCat(cat,btn){currentCat=cat;document.querySelectorAll('.cat-pill').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderProducts();}
 function renderProducts(){
   const grid=document.getElementById('productsGrid');grid.innerHTML='';
-  let list=currentCat==='todos'?[...PRODUCTOS]:PRODUCTOS.filter(p=>p.cat===currentCat);
+  let list=(currentCat==='todos'?[...PRODUCTOS]:PRODUCTOS.filter(p=>p.cat===currentCat)).filter(p=>p.cat!=='combo');
   const sort=(document.getElementById('sortSelect')||{value:'default'}).value;
   if(sort==='precio-asc')list.sort((a,b)=>a.precio-b.precio);
   else if(sort==='precio-desc')list.sort((a,b)=>b.precio-a.precio);
