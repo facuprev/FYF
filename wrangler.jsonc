@@ -1,0 +1,9 @@
+{
+  "name": "fyf",
+  "compatibility_date": "2026-10-24",
+  "assets": {
+    "directory": "."
+  },
+  "preview_urls": true,
+  "previews": {}
+}
