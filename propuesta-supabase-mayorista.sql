@@ -1,4 +1,4 @@
--- PROPUESTA SIN EJECUTAR: revisar con FYF antes de pegar en Supabase.
+-- APLICADA EN SUPABASE EL 26/10/2026 CON OK DEL DUEÑO. No volver a ejecutar manualmente.
 -- Crea tablas separadas para el catálogo y la gestión mayorista.
 -- No borra ni altera productos, ventas ni políticas existentes.
 -- Los 80 productos se importan desactivados y sin foto: primero hay que vincular cada imagen.
