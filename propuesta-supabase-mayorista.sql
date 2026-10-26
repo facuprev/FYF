@@ -71,7 +71,7 @@ create policy "FYF admin manages wholesale orders"
   using ((auth.jwt() ->> 'email') = 'facprev@gmail.com')
   with check ((auth.jwt() ->> 'email') = 'facprev@gmail.com');
 
-insert into public.productos_mayoristas (nombre, categoria, precio_mayorista, orden, activo, disponibilidad)
+insert into public.productos_mayoristas (nombre, categoria, precio_mayorista, orden)
 values
   ('Corona', 'Mates', 27000, 1),
   ('Torpedo roma uruguayo cincelado al lacre', 'Mates', 48600, 2),
@@ -159,3 +159,4 @@ on conflict (nombre) do nothing;
 -- La lista se importa desactivada hasta vincular la foto correcta y revisar precios.
 -- Desde el panel se puede actualizar el precio, elegir la foto y marcar la publicación.
 -- No se modifica el stock minorista ni se descuenta stock al guardar un pedido.
+
