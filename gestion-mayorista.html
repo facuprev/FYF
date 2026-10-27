@@ -50,7 +50,7 @@
         sb.from('productos').select('id,nombre,precio,img,stock,stock_cantidad').order('nombre'),
         sb.from('pedidos_mayoristas').select('id,cliente_id,cliente:clientes_mayoristas(nombre,negocio,whatsapp,localidad),total,estado,pago_estado,canal,nota,detalle,created_at').order('created_at',{ascending:false})
       ]);
-      if(pe||ve){message(document.getElementById('appMessage'),'La base todavía no tiene la estructura del sistema mayorista. No se guardó ni cambió ningún dato. Revisá la propuesta de Supabase antes de activar el panel.','error');products=[];sales=[]}
+      if(pe||ve){message(document.getElementById('appMessage'),'No se pudieron cargar los productos o pedidos mayoristas. Recargá el panel; no se guardaron cambios.','error');products=[];sales=[]}
       else{products=p||[];sales=v||[];if(re)message(document.getElementById('appMessage'),'No se pudo leer la lista minorista; el catálogo mayorista sigue separado.','error')}
       retail=r||[];fillProductSelect();renderAll();
     }
@@ -75,3 +75,4 @@
   </script>
 </body>
 </html>
+
