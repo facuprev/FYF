@@ -637,10 +637,10 @@ function showToast(msg){const t=document.getElementById('toast');t.textContent=m
 function submitForm(e){
   e.preventDefault();const form=document.getElementById('mayForm');if(!form.reportValidity())return;
   const data=new FormData(form);const nombre=String(data.get('nombre')||'').trim();const apellido=String(data.get('apellido')||'').trim();const telefono=String(data.get('telefono')||'').trim();
-  const lines=['Hola FYF, quiero solicitar información mayorista.',\`Nombre: \${nombre}\`,\`Apellido: \${apellido}\`,\`Teléfono / WhatsApp: \${telefono}\`];
+  const lines=['Hola FYF, quiero solicitar información mayorista.',`Nombre: ${nombre}`,`Apellido: ${apellido}`,`Teléfono / WhatsApp: ${telefono}`];
   const email=String(data.get('email')||'').trim();const tipo=String(data.get('tipo_negocio')||'').trim();const mensaje=String(data.get('mensaje')||'').trim();
-  if(email)lines.push(\`Email: \${email}\`);if(tipo)lines.push(\`Tipo de negocio: \${tipo}\`);if(mensaje)lines.push(\`Mensaje: \${mensaje}\`);
-  const url=\`https://wa.me/542364542207?text=\${encodeURIComponent(lines.join('\n'))}\`;const whatsapp=window.open(url,'_blank');if(whatsapp)whatsapp.opener=null;else window.location.assign(url);
+  if(email)lines.push(`Email: ${email}`);if(tipo)lines.push(`Tipo de negocio: ${tipo}`);if(mensaje)lines.push(`Mensaje: ${mensaje}`);
+  const url=`https://wa.me/542364542207?text=${encodeURIComponent(lines.join('\n'))}`;const whatsapp=window.open(url,'_blank');if(whatsapp)whatsapp.opener=null;else window.location.assign(url);
   document.getElementById('formError').style.display='none';document.getElementById('formOk').style.display='block';
 }
 /* === ANUNCIO === */
