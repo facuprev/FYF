@@ -515,18 +515,33 @@ function showLoading(show){
 
 async function loadData(){
   showLoading(true);
+  let timeoutId;
   try{
-    const{data:prods,error:pe}=await sb.from('productos').select('id,nombre,cat,cat_label,precio,stock,stock_cantidad,atrib,descripcion,img,badge,badge_text,orden').order('orden');
-    if(!pe&&Array.isArray(prods))PRODUCTOS=prods.map(fromRow);
-    else PRODUCTOS=[...PRODUCTOS_DEFAULT];
-    const{data:cfg}=await sb.from('configuracion').select('envios,pagos,anuncio_activo,anuncio_texto,anuncio_countdown,anuncio_hasta,stat_ventas,stat_clientes,stat_envios').eq('id',1).single();
-    if(cfg){
-      ENVIOS=cfg.envios||ENVIOS_DEFAULT;PAGOS=cfg.pagos||PAGOS_DEFAULT;
-      ANUNCIO={activo:cfg.anuncio_activo||false,texto:cfg.anuncio_texto||'',countdown:cfg.anuncio_countdown||false,hasta:cfg.anuncio_hasta||''};
-      STATS={ventas:cfg.stat_ventas||500,clientes:cfg.stat_clientes||200,envios:cfg.stat_envios||50};
-    }else{ENVIOS=[...ENVIOS_DEFAULT];PAGOS=[...PAGOS_DEFAULT];ANUNCIO={activo:false,texto:'',countdown:false,hasta:''};STATS={ventas:500,clientes:200,envios:50};}
-  }catch(e){PRODUCTOS=[...PRODUCTOS_DEFAULT];ENVIOS=[...ENVIOS_DEFAULT];PAGOS=[...PAGOS_DEFAULT];ANUNCIO={activo:false,texto:'',countdown:false,hasta:''};STATS={ventas:500,clientes:200,envios:50};}
-  showLoading(false);renderProducts();renderFooter();renderAnuncio();renderStats();
+    const loadPromise=(async()=>{
+      const{data:prods,error:pe}=await sb.from('productos').select('id,nombre,cat,cat_label,precio,stock,stock_cantidad,atrib,descripcion,img,badge,badge_text,orden').order('orden');
+      const productos=!pe&&Array.isArray(prods)?prods.map(fromRow):[...PRODUCTOS_DEFAULT];
+      const{data:cfg}=await sb.from('configuracion').select('envios,pagos,anuncio_activo,anuncio_texto,anuncio_countdown,anuncio_hasta,stat_ventas,stat_clientes,stat_envios').eq('id',1).single();
+      const defaults={envios:[...ENVIOS_DEFAULT],pagos:[...PAGOS_DEFAULT],anuncio:{activo:false,texto:'',countdown:false,hasta:''},stats:{ventas:500,clientes:200,envios:50}};
+      const config=cfg?{
+        envios:cfg.envios||ENVIOS_DEFAULT,
+        pagos:cfg.pagos||PAGOS_DEFAULT,
+        anuncio:{activo:cfg.anuncio_activo||false,texto:cfg.anuncio_texto||'',countdown:cfg.anuncio_countdown||false,hasta:cfg.anuncio_hasta||''},
+        stats:{ventas:cfg.stat_ventas||500,clientes:cfg.stat_clientes||200,envios:cfg.stat_envios||50}
+      }:defaults;
+      return{productos,...config};
+    })();
+    const timeoutPromise=new Promise((_,reject)=>{
+      timeoutId=setTimeout(()=>reject(new Error('Supabase tardó demasiado en responder')),12000);
+    });
+    const result=await Promise.race([loadPromise,timeoutPromise]);
+    PRODUCTOS=result.productos;ENVIOS=result.envios;PAGOS=result.pagos;ANUNCIO=result.anuncio;STATS=result.stats;
+  }catch(e){
+    PRODUCTOS=[...PRODUCTOS_DEFAULT];ENVIOS=[...ENVIOS_DEFAULT];PAGOS=[...PAGOS_DEFAULT];
+    ANUNCIO={activo:false,texto:'',countdown:false,hasta:''};STATS={ventas:500,clientes:200,envios:50};
+  }finally{
+    clearTimeout(timeoutId);
+    showLoading(false);renderProducts();renderFooter();renderAnuncio();renderStats();
+  }
 }
 
 function esc(value){return String(value==null?'':value).replace(/[&<>"']/g,function(ch){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch];});}
