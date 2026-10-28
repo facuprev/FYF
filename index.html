@@ -443,7 +443,7 @@
 const CDN='https://d22fxaf9t8d39k.cloudfront.net/';
 const SUPABASE_URL='https://ohsfpzpzzhmhbcizuljv.supabase.co';
 const SUPABASE_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9oc2ZwenB6emhtaGJjaXp1bGp2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg0MjQ4ODEsImV4cCI6MjA5NDAwMDg4MX0.Ff5mVN4vfzMy3mhncKLKZ4skIwCPmoOGlrezW-w0zP0';
-const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+const sb=window.supabase&&typeof window.supabase.createClient==='function'?window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY):null;
 
 const PRODUCTOS_DEFAULT=[
   {id:1,nombre:"Yerba Sara sabor suave 1kg",cat:"yerba",catLabel:"Yerbas",precio:11000,stock:false,atrib:"",desc:"Yerba premium sabor suave.",img:CDN+"be8451ff628e08ae1e7295df49a112dad9a72402c82984a7ef12066aebe1e3ad432995.png"},
@@ -684,7 +684,7 @@ function setupNavigation(){
   const updateNav=()=>nav.classList.toggle('is-scrolled',window.scrollY>40);
   window.addEventListener('scroll',updateNav,{passive:true});updateNav();
 }
-setupNavigation();setupMotion();loadData();
+try{setupNavigation();setupMotion();loadData();}catch(e){PRODUCTOS=[...PRODUCTOS_DEFAULT];ENVIOS=[...ENVIOS_DEFAULT];PAGOS=[...PAGOS_DEFAULT];ANUNCIO={activo:false,texto:'',countdown:false,hasta:''};STATS={ventas:500,clientes:200,envios:50};showLoading(false);renderProducts();renderFooter();renderAnuncio();renderStats();}
 </script>
 </body>
 </html>
